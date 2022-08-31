@@ -1,0 +1,28 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+#root {
+  height: 100vh;
+  max-width: 100%;
+  background-image: linear-gradient(
+    to right,
+    hsl(278, 68%, 11%) 30%,
+    hsl(0, 0%, 100%) 30%
+  );
+}
