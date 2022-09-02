@@ -20,6 +20,6 @@ body {
 #root {
   height: 100vh;
   max-width: 100%;
-  background-image: url(./img/bg-main-desktop.png);
+  background-image: url(./bg-main-desktop.png);
   background-repeat: no-repeat;
 }
