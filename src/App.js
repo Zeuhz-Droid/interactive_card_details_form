@@ -1,5 +1,5 @@
-import './App.css';
-import React from 'react';
+import "./App.css";
+import React from "react";
 
 class App extends React.Component {
   constructor(props) {
@@ -8,8 +8,8 @@ class App extends React.Component {
     this.state = {
       cardName: null,
       cardNumber: 0,
-      month: 'MM',
-      year: 'YY',
+      month: "MM",
+      year: "YY",
       cvc: 0,
     };
   }

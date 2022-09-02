@@ -4,7 +4,7 @@ const CardFront = ({ cardName, cardNumber, month, year }) => {
   return (
     <div className="card-front">
       <span className="card-logo">
-        <img src="../public/img/card-logo.svg" alt="card-logo" />
+        <img src="../../public/img/card-logo.svg" alt="card-logo" />
       </span>
       <div className="card-details">
         <span className="card-number">{cardNumber}</span>
@@ -19,15 +19,15 @@ const CardFront = ({ cardName, cardNumber, month, year }) => {
   );
 };
 
-const CardBack = ({ cvv }) => {
+const CardBack = ({ cvc }) => {
   return (
     <div className="card-back">
-      <span className="cvv">{cvv}</span>
+      <span className="cvc">{cvc}</span>
     </div>
   );
 };
 
-const Card = ({ cardName, cardNumber, cvv, month, year }) => {
+const Card = ({ cardName, cardNumber, cvc, month, year }) => {
   return (
     <div>
       <CardFront
@@ -36,7 +36,7 @@ const Card = ({ cardName, cardNumber, cvv, month, year }) => {
         month={month}
         year={year}
       />
-      <CardBack cvv={cvv} />
+      <CardBack cvc={cvc} />
     </div>
   );
 };
