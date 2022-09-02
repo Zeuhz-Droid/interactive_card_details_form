@@ -3,7 +3,7 @@ import React from "react";
 const CardFront = ({ cardName, cardNumber, month, year }) => {
   return (
     <div className="card-front">
-      <span className="card-logo">
+      <span className="card-logo"> 
         <img src="../public/img/card-logo.svg" alt="card-logo" />
       </span>
       <div className="card-details">
