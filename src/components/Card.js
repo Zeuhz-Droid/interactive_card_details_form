@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
+import logo from '../img/card-logo.svg';
 
 const CardFront = ({ cardName, cardNumber, month, year }) => {
   return (
     <div className="card-front">
       <span className="card-logo">
-        <img src="../../public/img/card-logo.svg" alt="card-logo" />
+        <img src={logo} alt="card-logo" />
       </span>
       <div className="card-details">
         <span className="card-number">{cardNumber}</span>
