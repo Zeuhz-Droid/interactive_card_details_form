@@ -11,7 +11,7 @@ class App extends React.Component {
       cardNumber: '0000 0000 0000 0000',
       month: 'MM',
       year: 'YY',
-      cvc: 123,
+      cvc: '000',
     };
   }
   render() {

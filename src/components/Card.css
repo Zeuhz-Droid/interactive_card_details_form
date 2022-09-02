@@ -1,0 +1,47 @@
+.Card {
+  display: grid;
+  gap: 5rem;
+}
+
+.card-front {
+  height: 25rem;
+  width: 45rem;
+  padding: 3rem;
+  background: url(../img/bg-card-front.png) no-repeat;
+}
+
+.card-back {
+  height: 25rem;
+  width: 45rem;
+  background: url(../img/bg-card-back.png) no-repeat;
+  transform: translateX(15%);
+  position: relative;
+}
+
+.card-details {
+  color: hsl(0, 0%, 100%);
+  margin-top: 6rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.card-number {
+  font-size: 2.3rem;
+  letter-spacing: 0.5rem;
+}
+
+.name-expiry-date-container {
+  font-size: 1.3rem;
+  letter-spacing: 0.25rem;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-cvc {
+  color: hsl(0, 0%, 100%);
+  letter-spacing: 0.25rem;
+  position: absolute;
+  top: 43%;
+  right: 13%;
+}

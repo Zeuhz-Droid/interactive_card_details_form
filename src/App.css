@@ -1,4 +1,9 @@
 .App {
+  height: 100vh;
+  width: 80vw;
+  margin-inline: auto;
   display: grid;
+  align-items: center;
+  justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
 }

@@ -1,3 +1,4 @@
+import './Card.css';
 import React from 'react';
 import logo from '../img/card-logo.svg';
 
@@ -11,7 +12,7 @@ const CardFront = ({ cardName, cardNumber, month, year }) => {
         <span className="card-number">{cardNumber}</span>
         <div className="name-expiry-date-container">
           <span className="card-name">{cardName}</span>
-          <span className="expiry-date">
+          <span className="card-expiry-date">
             {month}/{year}
           </span>
         </div>
@@ -23,14 +24,14 @@ const CardFront = ({ cardName, cardNumber, month, year }) => {
 const CardBack = ({ cvc }) => {
   return (
     <div className="card-back">
-      <span className="cvc">{cvc}</span>
+      <span className="card-cvc">{cvc}</span>
     </div>
   );
 };
 
 const Card = ({ cardName, cardNumber, cvc, month, year }) => {
   return (
-    <div>
+    <div className="Card">
       <CardFront
         cardName={cardName}
         cardNumber={cardNumber}
