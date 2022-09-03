@@ -9,11 +9,13 @@ const CardFront = ({ cardName, cardNumber, month, year }) => {
         <img src={logo} alt="card-logo" />
       </span>
       <div className="card-details">
-        <span className="card-number">{cardNumber}</span>
+        <span className="card-number">{`${
+          cardNumber || '0000 0000 0000 0000'
+        }`}</span>
         <div className="name-expiry-date-container">
-          <span className="card-name">{cardName}</span>
+          <span className="card-name">{`${cardName || 'Jane Appleseed'}`}</span>
           <span className="card-expiry-date">
-            {month}/{year}
+            {`${month || '00'}`}/{`${year || '00'}`}
           </span>
         </div>
       </div>
@@ -24,7 +26,7 @@ const CardFront = ({ cardName, cardNumber, month, year }) => {
 const CardBack = ({ cvc }) => {
   return (
     <div className="card-back">
-      <span className="card-cvc">{cvc}</span>
+      <span className="card-cvc">{`${cvc || '000'}`}</span>
     </div>
   );
 };

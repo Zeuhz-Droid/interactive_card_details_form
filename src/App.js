@@ -4,17 +4,22 @@ import Card from './components/Card';
 import Form from './components/Form';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    // The values of the state can be altered/changed as required.
-    this.state = {
-      cardName: 'Jane Appleseed',
-      cardNumber: '0000 0000 0000 0000',
-      month: 'MM',
-      year: 'YY',
-      cvc: '000',
-    };
-  }
+  // The values of the state can be altered/changed as required.
+  state = {
+    cardName: '',
+    cardNumber: '',
+    month: '',
+    year: '',
+    cvc: '',
+  };
+
+  setCardName = (value) => {
+    this.setState({ cardName: value });
+    console.log(this.state.cardName);
+  };
+
+  // setCard;
+
   render() {
     return (
       <div className="App">
@@ -25,7 +30,14 @@ class App extends React.Component {
           year={this.state.year}
           cvc={this.state.cvc}
         />
-        <Form />
+        <Form
+          setCardName={this.setCardName}
+          cardNumber={this.state.cardNumber}
+          cardName={this.state.cardName}
+          month={this.state.month}
+          year={this.state.year}
+          cvc={this.state.cvc}
+        />
       </div>
     );
   }
