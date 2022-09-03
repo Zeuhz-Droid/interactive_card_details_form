@@ -89,3 +89,20 @@
   font-size: 1.2rem;
   color: hsl(0, 100%, 66%);
 }
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 37.5em) {
+  .form-container {
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+
+  .form-group-disjointed-input input {
+    width: 100%;
+  }
+
+  .btn input {
+    margin-top: 1rem;
+  }
+}

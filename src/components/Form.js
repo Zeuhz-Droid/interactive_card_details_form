@@ -36,7 +36,7 @@ class Form extends React.Component {
               <span className="error">Can't be blank</span>
             </div>
 
-            <div className="form-group">
+            <div className="form-group-disjointed-input">
               <label>CVC</label>
               <input type="tel" placeholder="e.g. 123" />
               <span className="error">Can't be blank</span>

@@ -8,3 +8,9 @@
   grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
   gap: 10rem;
 }
+
+@media screen and (max-width: 37.5em) {
+  .App {
+    width: 100vw;
+  }
+}
