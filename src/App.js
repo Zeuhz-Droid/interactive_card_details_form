@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import Card from './components/Card';
+import Form from './components/Form';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,9 +25,10 @@ class App extends React.Component {
           year={this.state.year}
           cvc={this.state.cvc}
         />
+        <Form />
       </div>
     );
   }
 }
- 
+
 export default App;

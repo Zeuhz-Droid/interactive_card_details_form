@@ -1,0 +1,91 @@
+.Form {
+  justify-self: center;
+  margin-inline: auto;
+}
+
+.form-container {
+  width: 80%;
+  margin-inline: auto;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.form-group:nth-child(3) {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.form-group-joint {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group-joint-input {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group-joint-input input {
+  width: 60%;
+}
+
+.form-group label {
+  font-size: 1.3rem;
+  color: hsl(278, 68%, 11%);
+  letter-spacing: 0.25rem;
+}
+
+.form-group input {
+  appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1.5rem;
+  border: 0.1rem solid hsl(270, 3%, 87%);
+  border-radius: 0.5rem;
+  outline-color: transparent;
+  transition: all 0.1s;
+}
+
+.form-group input::-webkit-outer-spin-button,
+.form-group input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.form-group input:focus {
+  outline-color: hsl(278, 68%, 11%);
+}
+
+.form-group ::-webkit-input-placeholder {
+  color: hsl(270, 3%, 87%);
+}
+
+.btn input {
+  appearance: none;
+  border: none;
+  font-family: inherit;
+  font-size: 2rem;
+  width: 100%;
+  margin-top: 3rem;
+  padding: 1.5rem;
+  color: hsl(0, 0%, 100%);
+  border-radius: 1rem;
+  background-color: hsl(278, 68%, 11%);
+  transition: all 0.2s;
+}
+
+.btn input:hover {
+  opacity: 0.8;
+}
+
+.error {
+  font-size: 1.2rem;
+  color: hsl(0, 100%, 66%);
+}
