@@ -1,20 +1,21 @@
-import './App.css';
-import React from 'react';
-import Card from './components/Card';
-import Form from './components/Form';
+import "./App.css";
+import React from "react";
+import Card from "./components/Card";
+import Form from "./components/Form";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     // The values of the state can be altered/changed as required.
     this.state = {
-      cardName: 'Jane Appleseed',
-      cardNumber: '0000 0000 0000 0000',
-      month: 'MM',
-      year: 'YY',
-      cvc: '000',
+      cardName: "Jane Appleseed",
+      cardNumber: "0000 0000 0000 0000",
+      month: "MM",
+      year: "YY",
+      cvc: "000",
     };
   }
+
   render() {
     return (
       <div className="App">

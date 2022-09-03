@@ -1,13 +1,13 @@
-import './Form.css';
-import React from 'react';
+import "./Form.css";
+import React from "react";
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = { value: "" };
   }
 
   handleSubmit(event) {
-    alert('Your card details was successfully submitted: ' + this.state.value);
+    alert("Your card details was successfully submitted: " + this.state.value);
     event.preventDefault();
   }
 
