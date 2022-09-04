@@ -20,6 +20,19 @@ class App extends React.Component {
   setCardNumber = (value) => {
     this.setState({ cardNumber: value });
   };
+
+  setMonth = (value) => {
+    this.setState({ month: value });
+  };
+
+  setYear = (value) => {
+    this.setState({ year: value });
+  };
+
+  setCvc = (value) => {
+    this.setState({ cvc: value });
+  };
+
   // setCard;
 
   render() {
@@ -35,7 +48,9 @@ class App extends React.Component {
         <Form
           setCardName={this.setCardName}
           setCardNumber={this.setCardNumber}
-          // passing state as props
+          setMonth={this.setMonth}
+          setYear={this.setYear}
+          setCvc={this.setCvc}
           cardNumber={this.state.cardNumber}
           cardName={this.state.cardName}
           month={this.state.month}
