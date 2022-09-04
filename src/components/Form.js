@@ -118,8 +118,16 @@ class Form extends React.Component {
             <div className="form-group-joint">
               <label>EXP.DATE(MM/YY)</label>
               <div className="form-group-joint-input">
-                <input type="number" placeholder="MM" />
-                <input type="number" placeholder="YY" />
+                <input
+                  type="number"
+                  placeholder="MM"
+                  onChange={(e) => this.props.setMonth(e.target.value)}
+                />
+                <input
+                  type="number"
+                  placeholder="YY"
+                  onChange={(e) => this.props.setYear(e.target.value)}
+                />
               </div>
               <span className={`error ${this.state.time ? 'show' : ''}`}>
                 Can't be blank
@@ -128,7 +136,11 @@ class Form extends React.Component {
 
             <div className="form-group-disjointed-input">
               <label>CVC</label>
-              <input type="tel" placeholder="e.g. 123" />
+              <input
+                type="tel"
+                placeholder="e.g. 123"
+                onChange={(e) => this.props.setCvc(e.target.value)}
+              />
               <span className={`error ${this.state.cvc ? 'show' : ''}`}>
                 Can't be blank
               </span>
