@@ -15,9 +15,11 @@ class App extends React.Component {
 
   setCardName = (value) => {
     this.setState({ cardName: value });
-    console.log(this.state.cardName);
   };
 
+  setCardNumber = (value) => {
+    this.setState({ cardNumber: value });
+  };
   // setCard;
 
   render() {
@@ -32,6 +34,8 @@ class App extends React.Component {
         />
         <Form
           setCardName={this.setCardName}
+          setCardNumber={this.setCardNumber}
+          // passing state as props
           cardNumber={this.state.cardNumber}
           cardName={this.state.cardName}
           month={this.state.month}

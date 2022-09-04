@@ -3,15 +3,67 @@ import React from 'react';
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: false, number: false, time: false, cvc: false };
+    this.state = {
+      name: false,
+      number: false,
+      time: false,
+      cvc: false,
+      code: true,
+    };
+    // console.log(this.spaceCardNumber('12345678901234567890'));
+    this.inputRef = React.createRef();
+    this.specialChar = /[`!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
+    this.numChar = /[0-9]/;
+    this.letterChar = /[a-z]/;
   }
 
+  componentDidMount() {
+    this.inputRef.current.addEventListener('keydown', this.handleBackspace);
+  }
+
+  componentWillUnmount() {
+    this.inputRef.current.removeEventListener('keydown', this.handleBackspace);
+  }
+
+  handleBackspace = (e) => {
+    if (e.keyCode === 8) this.setState({ code: false });
+    else this.setState({ code: true });
+  };
+
+  spaceCardNumber = (str) => {
+    for (let i = 0; i <= str.length; i++)
+      if (this.state.code)
+        if (str.length === 4 + i * 5 && str.length < 19) str += ' ';
+    return str;
+  };
+
+  // using Regular expression (RegExp)
+  checkName(name) {
+    return this.specialChar.test(name) || this.numChar.test(name);
+  }
+
+  checkNumber(number) {
+    return this.letterChar.test(number) || this.specialChar.test(number);
+  }
+
+  getCardNumber = (e) => {
+    this.props.setCardNumber(this.spaceCardNumber(e.target.value));
+  };
+
   validateName = () => {
-    if (!this.props.cardName) this.setState({ name: true });
+    if (this.props.cardName)
+      if (this.checkName(this.props.cardName)) {
+        this.setState({ name: true });
+        return true;
+      } else this.setState({ name: false });
   };
 
   validateNumber = () => {
-    if (!this.props.cardNumber) this.setState({ number: true });
+    if (this.props.cardNumber)
+      if (this.checkNumber(this.props.cardNumber)) {
+        this.setState({ number: true });
+        return true;
+      } else this.setState({ number: false });
   };
 
   validateTime = () => {
@@ -49,8 +101,15 @@ class Form extends React.Component {
 
           <div className="form-group">
             <label>CARD NUMBER</label>
-            <input type="text" placeholder="e.g. 1234 5678 9123 0000" />
-            <span className={`error ${this.state.name ? 'show' : ''}`}>
+            <input
+              ref={this.inputRef}
+              type="text"
+              maxLength={19}
+              value={this.props.cardNumber}
+              onChange={this.getCardNumber}
+              placeholder="e.g. 1234 5678 9123 0000"
+            />
+            <span className={`error ${this.state.number ? 'show' : ''}`}>
               Wrong format, numbers only
             </span>
           </div>
