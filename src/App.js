@@ -1,16 +1,16 @@
-import "./App.css";
-import React from "react";
-import Card from "./components/Card";
-import Form from "./components/Form";
+import './App.css';
+import React from 'react';
+import Card from './components/Card';
+import Form from './components/Form';
 
 class App extends React.Component {
   // The values of the state can be altered/changed as required.
   state = {
-    cardName: "",
-    cardNumber: "",
-    month: "",
-    year: "",
-    cvc: "",
+    cardName: '',
+    cardNumber: '',
+    month: '',
+    year: '',
+    cvc: '',
   };
 
   setCardName = (value) => {

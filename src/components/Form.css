@@ -95,6 +95,10 @@
   opacity: 1;
 }
 
+.hide {
+  display: none;
+}
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 37.5em) {

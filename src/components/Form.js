@@ -9,6 +9,7 @@ class Form extends React.Component {
       time: false,
       cvc: false,
       code: true,
+      form: false,
     };
     // console.log(this.spaceCardNumber('12345678901234567890'));
     this.inputRef = React.createRef();
@@ -46,45 +47,94 @@ class Form extends React.Component {
     return this.letterChar.test(number) || this.specialChar.test(number);
   }
 
-  getCardNumber = (e) => {
-    this.props.setCardNumber(this.spaceCardNumber(e.target.value));
+  checkData = (value, length, min, max) => {
+    const arr = [...value];
+    let newArr;
+    if (arr.length >= length) {
+      newArr = arr.splice(0, length).join('');
+    }
+    if (arr.length > 0 && arr.length < length) {
+      return arr.join('');
+    }
+    if (+newArr > max) return max;
+    if (+newArr < min) return min;
+    else return newArr;
   };
 
   validateName = () => {
     if (this.props.cardName)
       if (this.checkName(this.props.cardName)) {
         this.setState({ name: true });
+        return false;
+      } else {
+        this.setState({ name: false });
         return true;
-      } else this.setState({ name: false });
+      }
+    else {
+      this.setState({ name: true });
+      return false;
+    }
   };
 
   validateNumber = () => {
     if (this.props.cardNumber)
       if (this.checkNumber(this.props.cardNumber)) {
         this.setState({ number: true });
+        return false;
+      } else {
+        this.setState({ number: false });
         return true;
-      } else this.setState({ number: false });
+      }
+    else {
+      this.setState({ number: true });
+      return false;
+    }
   };
 
   validateTime = () => {
-    if (!this.props.month && !this.props.year) this.setState({ time: true });
+    if (this.props.month && this.props.year) {
+      this.setState({ time: false });
+      return true;
+    }
+    if (!this.props.month || !this.props.year) {
+      this.setState({ time: true });
+      return false;
+    }
   };
 
   validateCvc = () => {
-    if (!this.props.cvc) this.setState({ cvc: true });
+    if (this.props.cvc) {
+      this.setState({ cvc: false });
+      return true;
+    }
+    if (!this.props.cvc) {
+      this.setState({ cvc: true });
+      return false;
+    }
   };
+
+  validateForm() {
+    if (
+      this.validateName() &&
+      this.validateNumber() &&
+      this.validateTime() &&
+      this.validateCvc()
+    )
+      this.setState({ form: true });
+    else return this.setState({ form: false });
+  }
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.validateName();
-    this.validateNumber();
-    this.validateTime();
-    this.validateCvc();
+    this.validateForm();
   };
 
   render() {
     return (
-      <form className="Form" onSubmit={this.onFormSubmit}>
+      <form
+        className={`Form ${this.state.form ? 'hide' : ''}`}
+        onSubmit={this.onFormSubmit}
+      >
         <div className="form-container">
           <div className="form-group">
             <label>CARDHOLDER NAME</label>
@@ -105,8 +155,11 @@ class Form extends React.Component {
               ref={this.inputRef}
               type="text"
               maxLength={19}
+              minLength={16}
               value={this.props.cardNumber}
-              onChange={this.getCardNumber}
+              onChange={(e) =>
+                this.props.setCardNumber(this.spaceCardNumber(e.target.value))
+              }
               placeholder="e.g. 1234 5678 9123 0000"
             />
             <span className={`error ${this.state.number ? 'show' : ''}`}>
@@ -114,6 +167,7 @@ class Form extends React.Component {
             </span>
           </div>
 
+          {/* WORKING ON THE NUMBERS/TIME */}
           <div className="form-group">
             <div className="form-group-joint">
               <label>EXP.DATE(MM/YY)</label>
@@ -121,12 +175,26 @@ class Form extends React.Component {
                 <input
                   type="number"
                   placeholder="MM"
-                  onChange={(e) => this.props.setMonth(e.target.value)}
+                  min={1}
+                  max={12}
+                  value={this.props.month}
+                  onChange={(e) =>
+                    this.props.setMonth(
+                      this.checkData(e.target.value, 2, 1, 12)
+                    )
+                  }
                 />
                 <input
                   type="number"
                   placeholder="YY"
-                  onChange={(e) => this.props.setYear(e.target.value)}
+                  min={22}
+                  max={30}
+                  value={this.props.year}
+                  onChange={(e) =>
+                    this.props.setYear(
+                      this.checkData(e.target.value, 2, 22, 29)
+                    )
+                  }
                 />
               </div>
               <span className={`error ${this.state.time ? 'show' : ''}`}>
@@ -137,9 +205,14 @@ class Form extends React.Component {
             <div className="form-group-disjointed-input">
               <label>CVC</label>
               <input
-                type="tel"
+                type="number"
+                min={100}
+                max={999}
                 placeholder="e.g. 123"
-                onChange={(e) => this.props.setCvc(e.target.value)}
+                value={this.props.cvc}
+                onChange={(e) =>
+                  this.props.setCvc(this.checkData(e.target.value, 3, 100, 999))
+                }
               />
               <span className={`error ${this.state.cvc ? 'show' : ''}`}>
                 Can't be blank
