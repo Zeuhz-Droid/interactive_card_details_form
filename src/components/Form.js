@@ -112,7 +112,7 @@ class Form extends React.Component {
     }
   };
 
-  validateForm() {
+  checkForm() {
     if (
       this.validateName() &&
       this.validateNumber() &&
@@ -129,7 +129,7 @@ class Form extends React.Component {
     this.validateNumber();
     this.validateTime();
     this.validateCvc();
-    this.validateForm();
+    this.checkForm();
   };
 
   render() {
