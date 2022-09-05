@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
+import ThankYou from './components/ThankYou';
 
 class App extends React.Component {
   // The values of the state can be altered/changed as required.
@@ -62,6 +63,7 @@ class App extends React.Component {
           cvc={this.state.cvc}
           form={this.state.form}
         />
+        <ThankYou form={this.state.form} />
       </div>
     );
   }
