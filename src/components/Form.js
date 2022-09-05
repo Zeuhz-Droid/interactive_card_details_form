@@ -31,9 +31,8 @@ class Form extends React.Component {
   };
 
   spaceCardNumber = (str) => {
-    for (let i = 0; i <= str.length; i++)
-      if (this.state.code)
-        if (str.length === 4 + i * 5 && str.length < 19) str += ' ';
+    for (let i = 0; i <= 2; i++)
+      if (this.state.code) if (str.length === 4 + i * 5) str += ' ';
     return str;
   };
 
@@ -112,7 +111,7 @@ class Form extends React.Component {
     }
   };
 
-  checkForm() {
+  setFormValue() {
     if (
       this.validateName() &&
       this.validateNumber() &&
@@ -129,7 +128,7 @@ class Form extends React.Component {
     this.validateNumber();
     this.validateTime();
     this.validateCvc();
-    this.checkForm();
+    this.setFormValue();
   };
 
   render() {
