@@ -9,13 +9,12 @@ class Form extends React.Component {
       time: false,
       cvc: false,
       code: true,
-      form: false,
     };
     // console.log(this.spaceCardNumber('12345678901234567890'));
     this.inputRef = React.createRef();
     this.specialChar = /[`!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
     this.numChar = /[0-9]/;
-    this.letterChar = /[a-z]/;
+    this.letterChar = /[A-Z]/;
   }
 
   componentDidMount() {
@@ -120,19 +119,23 @@ class Form extends React.Component {
       this.validateTime() &&
       this.validateCvc()
     )
-      this.setState({ form: true });
-    else return this.setState({ form: false });
+      this.props.setForm(false);
+    else return this.props.setForm(true);
   }
 
   onFormSubmit = (event) => {
     event.preventDefault();
+    this.validateName();
+    this.validateNumber();
+    this.validateTime();
+    this.validateCvc();
     this.validateForm();
   };
 
   render() {
     return (
       <form
-        className={`Form ${this.state.form ? 'hide' : ''}`}
+        className={`Form ${this.props.form ? '' : 'hide'}`}
         onSubmit={this.onFormSubmit}
       >
         <div className="form-container">
@@ -158,7 +161,9 @@ class Form extends React.Component {
               minLength={16}
               value={this.props.cardNumber}
               onChange={(e) =>
-                this.props.setCardNumber(this.spaceCardNumber(e.target.value))
+                this.props.setCardNumber(
+                  this.spaceCardNumber(e.target.value.toUpperCase())
+                )
               }
               placeholder="e.g. 1234 5678 9123 0000"
             />
@@ -192,7 +197,7 @@ class Form extends React.Component {
                   value={this.props.year}
                   onChange={(e) =>
                     this.props.setYear(
-                      this.checkData(e.target.value, 2, 22, 29)
+                      this.checkData(e.target.value, 2, 22, 30)
                     )
                   }
                 />
