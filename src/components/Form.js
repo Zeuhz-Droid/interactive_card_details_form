@@ -206,7 +206,7 @@ class Form extends React.Component {
               </span>
             </div>
 
-            <div className="form-group-disjointed-input">
+            <div className="form-group form-group-disjointed-input">
               <label>CVC</label>
               <input
                 type="number"
