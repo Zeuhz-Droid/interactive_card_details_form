@@ -12,6 +12,7 @@ class Form extends React.Component {
     };
     // console.log(this.spaceCardNumber('12345678901234567890'));
     this.inputRef = React.createRef();
+    this.monthRef = React.createRef();
     this.specialChar = /[`!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
     this.numChar = /[0-9]/;
     this.letterChar = /[A-Z]/;
@@ -19,15 +20,24 @@ class Form extends React.Component {
 
   componentDidMount() {
     this.inputRef.current.addEventListener('keydown', this.handleBackspace);
+    this.monthRef.current.addEventListener('blur', this.padInput);
   }
 
   componentWillUnmount() {
     this.inputRef.current.removeEventListener('keydown', this.handleBackspace);
+    this.monthRef.current.removeEventListener('blur', this.padInput);
   }
 
   handleBackspace = (e) => {
     if (e.keyCode === 8) this.setState({ code: false });
     else this.setState({ code: true });
+  };
+
+  padInput = (e) => {
+    if (e.target.value.length <= 1) {
+      console.log(e.target.value.length);
+      this.props.setMonth(e.target.value.padStart(2, '0'));
+    }
   };
 
   // Tn = a +(n-1)d
@@ -131,7 +141,7 @@ class Form extends React.Component {
     this.validateCvc();
     this.setFormValue();
   };
- 
+
   render() {
     return (
       <form
@@ -178,6 +188,7 @@ class Form extends React.Component {
               <label>EXP.DATE(MM/YY)</label>
               <div className="form-group-joint-input">
                 <input
+                  ref={this.monthRef}
                   type="number"
                   placeholder="MM"
                   min={1}
