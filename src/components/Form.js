@@ -131,7 +131,7 @@ class Form extends React.Component {
     this.validateCvc();
     this.setFormValue();
   };
-
+ 
   render() {
     return (
       <form
