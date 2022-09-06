@@ -1,5 +1,26 @@
 /* NOTE THIS PARTICULAR STYLE (.hide) SHOULD BE AT THE BOTTOM OF THE WHOLE STYLES, AS THIS GIVES IT MORE SPECIFITY THAN PUTTING IT IN THE MIDDLE, AN ALTERNATIVE TO THIS WOULD BE USING OR ADDING MORE SPECIFIC SELECTORS */
 
+.thankyou {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thank-you--title {
+  color: hsl(278, 68%, 11%);
+  font-size: 3rem;
+  margin: 3rem 0 1.5rem 0;
+}
+
+.thank-you--text {
+  color: hsl(279, 6%, 55%);
+}
+
+.thank-you--btn {
+  margin-top: 3rem;
+  width: 90%;
+}
+
 .hide {
   display: none;
 }
