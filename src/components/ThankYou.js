@@ -6,7 +6,7 @@ class ThankYou extends React.Component {
   render() {
     return (
       <div className={`thankyou ${this.props.form ? "hide" : ""}`}>
-        <img src={iconComplete} className="icon-complete" />
+        <img src={iconComplete} className="icon-complete" alt="icon-check" />
         <span className="thank-you--title">THANK YOU!</span>
         <p className="thank-you--text">We've added your card details</p>
         <div className="btn btn-submit thank-you--btn">
