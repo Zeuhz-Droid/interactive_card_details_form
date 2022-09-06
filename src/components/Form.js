@@ -30,6 +30,7 @@ class Form extends React.Component {
     else this.setState({ code: true });
   };
 
+  // Tn = a +(n-1)d
   spaceCardNumber = (str) => {
     for (let i = 0; i <= 2; i++)
       if (this.state.code) if (str.length === 4 + i * 5) str += ' ';
@@ -39,17 +40,17 @@ class Form extends React.Component {
   // using Regular expression (RegExp)
   checkName(name) {
     return this.specialChar.test(name) || this.numChar.test(name);
-  }
+  } // true
 
   checkNumber(number) {
     return this.letterChar.test(number) || this.specialChar.test(number);
-  }
+  } //true
 
   checkData = (value, length, min, max) => {
-    const arr = [...value];
     let newArr;
+    const arr = [...value];
     if (arr.length >= length) {
-      newArr = arr.splice(0, length).join('');
+      newArr = arr.slice(0, length).join('');
     }
     if (arr.length > 0 && arr.length < length) {
       return arr.join('');
