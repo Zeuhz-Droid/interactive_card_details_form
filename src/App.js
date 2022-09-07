@@ -63,7 +63,15 @@ class App extends React.Component {
           cvc={this.state.cvc}
           form={this.state.form}
         />
-        <ThankYou form={this.state.form} />
+        <ThankYou
+          setCardName={this.setCardName}
+          setCardNumber={this.setCardNumber}
+          setMonth={this.setMonth}
+          setYear={this.setYear}
+          setCvc={this.setCvc}
+          form={this.state.form}
+          setForm={this.setForm}
+        />
       </div>
     );
   }
