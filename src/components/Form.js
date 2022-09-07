@@ -29,8 +29,7 @@ class Form extends React.Component {
   }
 
   handleBackspace = (e) => {
-    if (e.keyCode === 8 && e.key === 'Backspace')
-      this.setState({ code: false });
+    if (e.keyCode === 8) this.setState({ code: false });
     else this.setState({ code: true });
   };
 
