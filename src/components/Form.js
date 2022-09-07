@@ -29,7 +29,8 @@ class Form extends React.Component {
   }
 
   handleBackspace = (e) => {
-    if (e.keyCode === 8) this.setState({ code: false });
+    if (e.keyCode === 8 && e.key === 'Backspace')
+      this.setState({ code: false });
     else this.setState({ code: true });
   };
 
@@ -42,7 +43,7 @@ class Form extends React.Component {
 
   // Tn = a +(n-1)d
   spaceCardNumber = (str) => {
-    for (let i = 0; i <= 2; i++)
+    for (let i = 0; i < 3; i++)
       if (this.state.code) if (str.length === 4 + i * 5) str += ' ';
     return str;
   };
