@@ -44,7 +44,7 @@ class Form extends React.Component {
   // Tn = a +(n-1)d
   spaceCardNumber = (str) => {
     for (let i = 0; i < 3; i++)
-      if (this.state.code) if (str.length === 4 + i * 5) str += ' ';
+      if (this.state.code && str.length === 4 + i * 5) str += ' ';
     return this.checkData(str, 19);
   };
 
@@ -168,7 +168,6 @@ class Form extends React.Component {
             <input
               ref={this.inputRef}
               type="text"
-              maxLength={19}
               value={this.props.cardNumber}
               onChange={(e) =>
                 this.props.setCardNumber(
