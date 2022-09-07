@@ -168,7 +168,6 @@ class Form extends React.Component {
               ref={this.inputRef}
               type="text"
               maxLength={19}
-              minLength={16}
               value={this.props.cardNumber}
               onChange={(e) =>
                 this.props.setCardNumber(
