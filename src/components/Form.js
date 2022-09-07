@@ -45,7 +45,7 @@ class Form extends React.Component {
   spaceCardNumber = (str) => {
     for (let i = 0; i < 3; i++)
       if (this.state.code) if (str.length === 4 + i * 5) str += ' ';
-    return str;
+    return this.checkData(str, 19);
   };
 
   // using Regular expression (RegExp)
@@ -66,8 +66,8 @@ class Form extends React.Component {
     if (arr.length > 0 && arr.length < length) {
       return arr.join('');
     }
-    if (+newArr > max) return max;
-    if (+newArr < min) return min;
+    if (max && +newArr > max) return max;
+    if (min && +newArr < min) return min;
     else return newArr;
   };
 
