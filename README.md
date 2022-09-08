@@ -71,8 +71,8 @@ The site when the form has been submitted,
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/Zeuhz-Droid/interactive_card_details_form)
-- Live Site URL: [Add live site URL here](https://interactive-card-details-drtyzd.netlify.app/)
+- Solution URL: [CODE](https://github.com/Zeuhz-Droid/interactive_card_details_form)
+- Live Site URL: [LIVE](https://interactive-card-details-drtyzd.netlify.app/)
 
 ## My process
 
