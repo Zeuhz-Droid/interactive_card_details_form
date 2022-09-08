@@ -1,5 +1,5 @@
-import "./Form.css";
-import React from "react";
+import './Form.css';
+import React from 'react';
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -19,26 +19,17 @@ class Form extends React.Component {
   }
 
   componentDidMount() {
-    this.inputRef.current.addEventListener("keydown", this.handleBackspace);
-    this.monthRef.current.addEventListener("blur", this.padInput);
+    this.monthRef.current.addEventListener('blur', this.padInput);
   }
 
   componentWillUnmount() {
-    this.inputRef.current.removeEventListener("keydown", this.handleBackspace);
-    this.monthRef.current.removeEventListener("blur", this.padInput);
+    this.monthRef.current.removeEventListener('blur', this.padInput);
   }
-
-  handleBackspace = (e) => {
-    console.log(e);
-    if (e.keyCode === 8 || e.code === "Backspace")
-      this.setState({ code: false });
-    else this.setState({ code: true });
-  };
 
   padInput = (e) => {
     if (e.target.value.length <= 1) {
       console.log(e.target.value.length);
-      this.props.setMonth(e.target.value.padStart(2, "0"));
+      this.props.setMonth(e.target.value.padStart(2, '0'));
     }
   };
 
@@ -49,10 +40,10 @@ class Form extends React.Component {
     // return this.checkData(str, 19);
     return (
       str
-        .replace(/\s/g, "")
+        .replace(/\s/g, '')
         .match(/.{1,4}/g)
-        ?.join(" ")
-        .substr(0, 19) || ""
+        ?.join(' ')
+        .substr(0, 19) || ''
     );
   };
 
@@ -69,10 +60,10 @@ class Form extends React.Component {
     let newArr;
     const arr = [...value];
     if (arr.length >= length) {
-      newArr = arr.slice(0, length).join("");
+      newArr = arr.slice(0, length).join('');
     }
     if (arr.length > 0 && arr.length < length) {
-      return arr.join("");
+      return arr.join('');
     }
     if (max && +newArr > max) return max;
     if (min && +newArr < min) return min;
@@ -154,7 +145,7 @@ class Form extends React.Component {
   render() {
     return (
       <form
-        className={`Form ${this.props.form ? "" : "hide"}`}
+        className={`Form ${this.props.form ? '' : 'hide'}`}
         onSubmit={this.onFormSubmit}
       >
         <div className="form-container">
@@ -166,7 +157,7 @@ class Form extends React.Component {
               onChange={(e) => this.props.setCardName(e.target.value)}
               placeholder="e.g. Jane Appleseed"
             />
-            <span className={`error ${this.state.name ? "show" : ""}`}>
+            <span className={`error ${this.state.name ? 'show' : ''}`}>
               Wrong format, letters only
             </span>
           </div>
@@ -174,7 +165,6 @@ class Form extends React.Component {
           <div className="form-group">
             <label>CARD NUMBER</label>
             <input
-              ref={this.inputRef}
               type="text"
               value={this.props.cardNumber}
               onChange={(e) =>
@@ -184,7 +174,7 @@ class Form extends React.Component {
               }
               placeholder="e.g. 1234 5678 9123 0000"
             />
-            <span className={`error ${this.state.number ? "show" : ""}`}>
+            <span className={`error ${this.state.number ? 'show' : ''}`}>
               Wrong format, numbers only
             </span>
           </div>
@@ -220,7 +210,7 @@ class Form extends React.Component {
                   }
                 />
               </div>
-              <span className={`error ${this.state.time ? "show" : ""}`}>
+              <span className={`error ${this.state.time ? 'show' : ''}`}>
                 Can't be blank
               </span>
             </div>
@@ -237,7 +227,7 @@ class Form extends React.Component {
                   this.props.setCvc(this.checkData(e.target.value, 3, 100, 999))
                 }
               />
-              <span className={`error ${this.state.cvc ? "show" : ""}`}>
+              <span className={`error ${this.state.cvc ? 'show' : ''}`}>
                 Can't be blank
               </span>
             </div>
