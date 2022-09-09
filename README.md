@@ -14,7 +14,7 @@ This is a solution to the [Interactive card details form challenge on Frontend M
   - [My process](#my-process)
     - [Built with](#built-with)
     - [What was learnt](#what-was-learnt)
-  - [Author(s)](#authors)
+  - [Author(s)/Contributor(s)](#authorscontributors)
   - [Acknowledgments](#acknowledgments)
 - [Getting Started with Create React App](#getting-started-with-create-react-app)
   - [Available Scripts](#available-scripts)
@@ -45,7 +45,7 @@ Users should be able to:
 
 ### Introduction to Project
 
-This project was built as a precursor to learning and perfecting React, hence this is a REACT only project.
+This project was built as a precursor to learning and perfecting React, hence this project was built with only REACT and styled with native CSS.
 Class components _e.g_,
 
 ```js
@@ -92,18 +92,54 @@ The site when the form has been submitted,
 - passing states as props from parent to child comps.
 - passing props to parents using callbacks,
 - using lifecycle methods in React.
+- about react hooks
+- working in a team
+- solving problems together.
+
+Code [@zeuhzDroid](https://www.twitter.com/zeuhzDroid) am proud of.
 
 ```js
+    this.inputRef = React.createRef();
+    this.monthRef = React.createRef();
+
   componentDidMount() {
     this.monthRef.current.addEventListener('blur', this.padInput);
   }
-
    componentWillUnmount() {
     this.monthRef.current.removeEventListener('blur', this.padInput);
   }
 ```
 
-## Author(s)
+Code [@adetoye_dev](https://twitter.com/adetoye_dev)) am proud of.
+
+```js
+const Card = ({ cardName, cardNumber, cvc, month, year }) => {
+  return (
+    <div className="Card">
+      <CardFront
+        cardName={cardName}
+        cardNumber={cardNumber}
+        month={month}
+        year={year}
+      />
+      <CardBack cvc={cvc} />
+    </div>
+  );
+};
+export default Card;
+```
+
+Code [@Dearie_de_cybek)](https://twitter.com/Dearie_de_cybek) am proud of.
+
+## Author(s)/Contributor(s)
+
+- GitHub Link - [@Dearie-cyber](https://github.com/Dearie-cyber)
+- Frontend Mentor - [@Dearie-cyber](http://frontendmentor.io/profile/Dearie-cyber)
+- Twitter - [@Dearie_de_cybek)](https://twitter.com/Dearie_de_cybek)
+-
+- GitHub Link - [@Zeuhz-Droid](https://github.com/adetoye-dev)
+- Frontend Mentor - [@zeuhz-Droid](https://www.frontendmentor.io/profile/adetoye-dev)
+- Twitter - [@adetoye_dev](https://twitter.com/adetoye_dev)
 
 - GitHub Link - [@Zeuhz-Droid](https://www.github.com/Zeuhz-Droid)
 - Frontend Mentor - [@zeuhz-Droid](https://www.frontendmentor.io/profile/Zeuhz-Droid)
