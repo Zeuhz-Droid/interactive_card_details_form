@@ -96,7 +96,25 @@ The site when the form has been submitted,
 - working in a team
 - solving problems together.
 
-Code [@zeuhzDroid](https://www.twitter.com/zeuhzDroid) am proud of.
+Code [@Dearie_de_cybek)](https://twitter.com/Dearie_de_cybek) is proud of.
+
+```js
+<div className="form-group-joint-input">
+  <input
+    ref={this.monthRef}
+    type="number"
+    placeholder="MM"
+    min={1}
+    max={12}
+    value={this.props.month}
+    onChange={(e) =>
+      this.props.setMonth(this.checkData(e.target.value, 2, 1, 12))
+    }
+  />
+</div>
+```
+
+Code [@zeuhzDroid](https://www.twitter.com/zeuhzDroid) is proud of.
 
 ```js
     this.inputRef = React.createRef();
@@ -110,7 +128,7 @@ Code [@zeuhzDroid](https://www.twitter.com/zeuhzDroid) am proud of.
   }
 ```
 
-Code [@adetoye_dev](https://twitter.com/adetoye_dev)) am proud of.
+Code [@adetoye_dev](https://twitter.com/adetoye_dev) is proud of.
 
 ```js
 const Card = ({ cardName, cardNumber, cvc, month, year }) => {
@@ -129,21 +147,19 @@ const Card = ({ cardName, cardNumber, cvc, month, year }) => {
 export default Card;
 ```
 
-Code [@Dearie_de_cybek)](https://twitter.com/Dearie_de_cybek) am proud of.
-
 ## Author(s)/Contributor(s)
 
 - GitHub Link - [@Dearie-cyber](https://github.com/Dearie-cyber)
-- Frontend Mentor - [@Dearie-cyber](http://frontendmentor.io/profile/Dearie-cyber)
-- Twitter - [@Dearie_de_cybek)](https://twitter.com/Dearie_de_cybek)
--
+  Frontend Mentor - [@Dearie-cyber](http://frontendmentor.io/profile/Dearie-cyber)
+  Twitter - [@Dearie_de_cybek)](https://twitter.com/Dearie_de_cybek)
+
 - GitHub Link - [@Zeuhz-Droid](https://github.com/adetoye-dev)
-- Frontend Mentor - [@zeuhz-Droid](https://www.frontendmentor.io/profile/adetoye-dev)
-- Twitter - [@adetoye_dev](https://twitter.com/adetoye_dev)
+  Frontend Mentor - [@zeuhz-Droid](https://www.frontendmentor.io/profile/adetoye-dev)
+  Twitter - [@adetoye_dev](https://twitter.com/adetoye_dev)
 
 - GitHub Link - [@Zeuhz-Droid](https://www.github.com/Zeuhz-Droid)
-- Frontend Mentor - [@zeuhz-Droid](https://www.frontendmentor.io/profile/Zeuhz-Droid)
-- Twitter - [@zeuhzDroid](https://www.twitter.com/zeuhzDroid)
+  Frontend Mentor - [@zeuhz-Droid](https://www.frontendmentor.io/profile/Zeuhz-Droid)
+  Twitter - [@zeuhzDroid](https://www.twitter.com/zeuhzDroid)
 
 ## Acknowledgments
 
@@ -219,3 +235,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+```
+
+```
