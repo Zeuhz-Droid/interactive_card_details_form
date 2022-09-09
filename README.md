@@ -45,6 +45,7 @@ Users should be able to:
 
 ### Introduction to Project
 
+This is a form validator built with react, it allows users to input datails needed for payment via a mobile bank transfer, validates the data collected, and gives a feedback only if the required format of details have been submitted.
 This project was built as a precursor to learning and perfecting React, hence this project was built with only REACT and styled with native CSS.
 Class components _e.g_,
 
@@ -96,7 +97,7 @@ The site when the form has been submitted,
 - working in a team
 - solving problems together.
 
-Code [@Dearie_de_cybek)](https://twitter.com/Dearie_de_cybek) is proud of.
+Code [Dearie_de_cybek](https://twitter.com/Dearie_de_cybek) is proud of.
 
 ```js
 <div className="form-group-joint-input">
@@ -114,7 +115,7 @@ Code [@Dearie_de_cybek)](https://twitter.com/Dearie_de_cybek) is proud of.
 </div>
 ```
 
-Code [@zeuhzDroid](https://www.twitter.com/zeuhzDroid) is proud of.
+Code [zeuhzDroid](https://www.twitter.com/zeuhzDroid) is proud of.
 
 ```js
     this.inputRef = React.createRef();
@@ -128,7 +129,7 @@ Code [@zeuhzDroid](https://www.twitter.com/zeuhzDroid) is proud of.
   }
 ```
 
-Code [@adetoye_dev](https://twitter.com/adetoye_dev) is proud of.
+Code [adetoye_dev](https://twitter.com/adetoye_dev) is proud of.
 
 ```js
 const Card = ({ cardName, cardNumber, cvc, month, year }) => {
