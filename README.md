@@ -153,8 +153,8 @@ export default Card;
   Frontend Mentor - [@Dearie-cyber](http://frontendmentor.io/profile/Dearie-cyber)
   Twitter - [@Dearie_de_cybek)](https://twitter.com/Dearie_de_cybek)
 
-- GitHub Link - [@Zeuhz-Droid](https://github.com/adetoye-dev)
-  Frontend Mentor - [@zeuhz-Droid](https://www.frontendmentor.io/profile/adetoye-dev)
+- GitHub Link - [@adetoye-dev](https://github.com/adetoye-dev)
+  Frontend Mentor - [@adetoye-dev](https://www.frontendmentor.io/profile/adetoye-dev)
   Twitter - [@adetoye_dev](https://twitter.com/adetoye_dev)
 
 - GitHub Link - [@Zeuhz-Droid](https://www.github.com/Zeuhz-Droid)
