@@ -5,11 +5,11 @@
   display: grid;
   align-items: center;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   gap: 10rem;
 }
 
-@media screen and (max-width: 37.5em) {
+@media screen and (max-width: 62.5em) {
   .App {
     width: 100vw;
   }
