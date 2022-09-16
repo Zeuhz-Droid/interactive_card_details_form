@@ -1,3 +1,5 @@
+const specialChar = /[`!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
+
 exports.spaceCardNumber = (str) => {
   return (
     str
@@ -10,15 +12,11 @@ exports.spaceCardNumber = (str) => {
 
 // using Regular expression (RegExp)
 exports.checkName = (name) => {
-  const specialChar = /[`!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
-
   const numChar = /[0-9]/;
   return specialChar.test(name) || numChar.test(name);
 }; // true
 
 exports.checkNumber = (number) => {
-  const specialChar = /[`!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
-
   const letterChar = /[A-Z]/;
   return letterChar.test(number) || specialChar.test(number);
 }; //true
