@@ -71,8 +71,8 @@ class Form extends React.Component {
   };
 
   validateName = () => {
-    if (this.props.cardName)
-      if (this.checkName(this.props.cardName)) {
+    if (this.props.cardDetails.cardName.value)
+      if (this.checkName(this.props.cardDetails.cardName.value)) {
         this.setState({ name: true });
         return false;
       } else {
@@ -86,8 +86,8 @@ class Form extends React.Component {
   };
 
   validateNumber = () => {
-    if (this.props.cardNumber)
-      if (this.checkNumber(this.props.cardNumber)) {
+    if (this.props.cardDetails.cardNumber.value)
+      if (this.checkNumber(this.props.cardDetails.cardNumber.value)) {
         this.setState({ number: true });
         return false;
       } else {
@@ -101,22 +101,28 @@ class Form extends React.Component {
   };
 
   validateTime = () => {
-    if (this.props.month && this.props.year) {
+    if (
+      this.props.cardDetails.month.value &&
+      this.props.cardDetails.year.value
+    ) {
       this.setState({ time: false });
       return true;
     }
-    if (!this.props.month || !this.props.year) {
+    if (
+      !this.props.cardDetails.month.value ||
+      !this.props.cardDetails.year.value
+    ) {
       this.setState({ time: true });
       return false;
     }
   };
 
   validateCvc = () => {
-    if (this.props.cvc) {
+    if (this.props.cardDetails.cvc.value) {
       this.setState({ cvc: false });
       return true;
     }
-    if (!this.props.cvc) {
+    if (!this.props.cardDetails.cvc.value) {
       this.setState({ cvc: true });
       return false;
     }

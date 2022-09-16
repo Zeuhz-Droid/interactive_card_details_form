@@ -31,8 +31,8 @@ const App = () => {
     });
   };
 
-  const setFormValue = () => {
-    setForm((prevFormValue) => !prevFormValue);
+  const setFormValue = (value) => {
+    setForm(value);
   };
 
   return (
