@@ -15,9 +15,19 @@ const App = () => {
   });
   const [form, setForm] = useState(true);
 
-  const handleStateChange = (value) => {
+  const handleStateChange = (id, value) => {
     setCardDetails((prevDetails) => {
-      return { ...prevDetails, cardName: { id: "name", value: value } };
+      if (id == "name") {
+        return { ...prevDetails, cardName: { id: "name", value: value } };
+      } else if (id == "number") {
+        return { ...prevDetails, cardNumber: { id: "number", value: value } };
+      } else if (id == "month") {
+        return { ...prevDetails, month: { id: "month", value: value } };
+      } else if (id == "year") {
+        return { ...prevDetails, year: { id: "year", value: value } };
+      } else if (id == "cvc") {
+        return { ...prevDetails, cvc: { id: "cvc", value: value } };
+      }
     });
   };
 

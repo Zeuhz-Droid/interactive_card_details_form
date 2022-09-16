@@ -1,5 +1,5 @@
-import './Form.css';
-import React from 'react';
+import "./Form.css";
+import React from "react";
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -19,17 +19,17 @@ class Form extends React.Component {
   }
 
   componentDidMount() {
-    this.monthRef.current.addEventListener('blur', this.padInput);
+    this.monthRef.current.addEventListener("blur", this.padInput);
   }
 
   componentWillUnmount() {
-    this.monthRef.current.removeEventListener('blur', this.padInput);
+    this.monthRef.current.removeEventListener("blur", this.padInput);
   }
 
   padInput = (e) => {
     if (e.target.value.length <= 1) {
       console.log(e.target.value.length);
-      this.props.setMonth(e.target.value.padStart(2, '0'));
+      this.props.setMonth(e.target.value.padStart(2, "0"));
     }
   };
 
@@ -40,10 +40,10 @@ class Form extends React.Component {
     // return this.checkData(str, 19);
     return (
       str
-        .replace(/\s/g, '')
+        .replace(/\s/g, "")
         .match(/.{1,4}/g)
-        ?.join(' ')
-        .substr(0, 19) || ''
+        ?.join(" ")
+        .substr(0, 19) || ""
     );
   };
 
@@ -60,10 +60,10 @@ class Form extends React.Component {
     let newArr;
     const arr = [...value];
     if (arr.length >= length) {
-      newArr = arr.slice(0, length).join('');
+      newArr = arr.slice(0, length).join("");
     }
     if (arr.length > 0 && arr.length < length) {
-      return arr.join('');
+      return arr.join("");
     }
     if (max && +newArr > max) return max;
     if (min && +newArr < min) return min;
@@ -145,7 +145,7 @@ class Form extends React.Component {
   render() {
     return (
       <form
-        className={`Form ${this.props.form ? '' : 'hide'}`}
+        className={`Form ${this.props.form ? "" : "hide"}`}
         onSubmit={this.onFormSubmit}
       >
         <div className="form-container">
@@ -154,10 +154,10 @@ class Form extends React.Component {
             <input
               type="text"
               value={this.props.cardName}
-              onChange={(e) => this.props.setCardName(e.target.value)}
+              onChange={(e) => this.props.handleChange("name", e.target.value)}
               placeholder="e.g. Jane Appleseed"
             />
-            <span className={`error ${this.state.name ? 'show' : ''}`}>
+            <span className={`error ${this.state.name ? "show" : ""}`}>
               Wrong format, letters only
             </span>
           </div>
@@ -168,13 +168,14 @@ class Form extends React.Component {
               type="text"
               value={this.props.cardNumber}
               onChange={(e) =>
-                this.props.setCardNumber(
+                this.props.handleChange(
+                  "number",
                   this.spaceCardNumber(e.target.value.toUpperCase())
                 )
               }
               placeholder="e.g. 1234 5678 9123 0000"
             />
-            <span className={`error ${this.state.number ? 'show' : ''}`}>
+            <span className={`error ${this.state.number ? "show" : ""}`}>
               Wrong format, numbers only
             </span>
           </div>
@@ -192,7 +193,8 @@ class Form extends React.Component {
                   max={12}
                   value={this.props.month}
                   onChange={(e) =>
-                    this.props.setMonth(
+                    this.props.handleChange(
+                      "month",
                       this.checkData(e.target.value, 2, 1, 12)
                     )
                   }
@@ -204,13 +206,14 @@ class Form extends React.Component {
                   max={30}
                   value={this.props.year}
                   onChange={(e) =>
-                    this.props.setYear(
+                    this.props.handleChange(
+                      "year",
                       this.checkData(e.target.value, 2, 22, 30)
                     )
                   }
                 />
               </div>
-              <span className={`error ${this.state.time ? 'show' : ''}`}>
+              <span className={`error ${this.state.time ? "show" : ""}`}>
                 Can't be blank
               </span>
             </div>
@@ -224,10 +227,13 @@ class Form extends React.Component {
                 placeholder="e.g. 123"
                 value={this.props.cvc}
                 onChange={(e) =>
-                  this.props.setCvc(this.checkData(e.target.value, 3, 100, 999))
+                  this.props.handleChange(
+                    "cvc",
+                    this.checkData(e.target.value, 3, 100, 999)
+                  )
                 }
               />
-              <span className={`error ${this.state.cvc ? 'show' : ''}`}>
+              <span className={`error ${this.state.cvc ? "show" : ""}`}>
                 Can't be blank
               </span>
             </div>
