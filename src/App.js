@@ -17,15 +17,15 @@ const App = () => {
 
   const handleStateChange = (id, value) => {
     setCardDetails((prevDetails) => {
-      if (id == "name") {
+      if (id === "name") {
         return { ...prevDetails, cardName: { id: "name", value: value } };
-      } else if (id == "number") {
+      } else if (id === "number") {
         return { ...prevDetails, cardNumber: { id: "number", value: value } };
-      } else if (id == "month") {
+      } else if (id === "month") {
         return { ...prevDetails, month: { id: "month", value: value } };
-      } else if (id == "year") {
+      } else if (id === "year") {
         return { ...prevDetails, year: { id: "year", value: value } };
-      } else if (id == "cvc") {
+      } else if (id === "cvc") {
         return { ...prevDetails, cvc: { id: "cvc", value: value } };
       }
     });
