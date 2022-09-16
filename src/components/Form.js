@@ -1,257 +1,222 @@
-import "./Form.css";
-import React from "react";
-class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: false,
-      number: false,
-      time: false,
-      cvc: false,
-      code: true,
+import './Form.css';
+import React, { useState, useEffect, useRef } from 'react';
+
+const Form = ({ handleChange, setForm, cardDetails, form }) => {
+  const [cardNameState, setCardNameState] = useState();
+  const [cardNumberState, setCardNumberState] = useState();
+  const [cardTimeState, setCardtimeState] = useState();
+  const [cardCvcState, setCardCvcState] = useState();
+
+  const monthRef = useRef();
+  const specialChar = /[`!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
+  const numChar = /[0-9]/;
+  const letterChar = /[A-Z]/;
+
+  useEffect(() => {
+    monthRef.current.addEventListener('blur', padInput);
+    return () => {
+      monthRef.current.removeEventListener('blur', padInput);
     };
-    // console.log(this.spaceCardNumber('12345678901234567890'));
-    this.inputRef = React.createRef();
-    this.monthRef = React.createRef();
-    this.specialChar = /[`!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
-    this.numChar = /[0-9]/;
-    this.letterChar = /[A-Z]/;
-  }
+  });
 
-  componentDidMount() {
-    this.monthRef.current.addEventListener("blur", this.padInput);
-  }
-
-  componentWillUnmount() {
-    this.monthRef.current.removeEventListener("blur", this.padInput);
-  }
-
-  padInput = (e) => {
+  const padInput = (e) => {
+    console.log(e);
     if (e.target.value && e.target.value.length <= 1) {
-      console.log(e.target.value.length);
-      this.props.setMonth(e.target.value.padStart(2, "0"));
+      cardDetails.month.value = e.target.value.padStart(2, '0');
+      console.log(cardDetails.month.value);
     }
   };
 
-  // Tn = a +(n-1)d
-  spaceCardNumber = (str) => {
-    // for (let i = 0; i < 3; i++)
-    //   if (this.state.code) if (str.length === 4 + i * 5) str += " ";
-    // return this.checkData(str, 19);
+  const spaceCardNumber = (str) => {
     return (
       str
-        .replace(/\s/g, "")
+        .replace(/\s/g, '')
         .match(/.{1,4}/g)
-        ?.join(" ")
-        .substr(0, 19) || ""
+        ?.join(' ')
+        .substr(0, 19) || ''
     );
   };
 
   // using Regular expression (RegExp)
-  checkName(name) {
-    return this.specialChar.test(name) || this.numChar.test(name);
-  } // true
+  const checkName = (name) => {
+    return specialChar.test(name) || numChar.test(name);
+  }; // true
 
-  checkNumber(number) {
-    return this.letterChar.test(number) || this.specialChar.test(number);
-  } //true
+  const checkNumber = (number) => {
+    return letterChar.test(number) || specialChar.test(number);
+  }; //true
 
-  checkData = (value, length, min, max) => {
+  const checkData = (value, length, min, max) => {
     let newArr;
     const arr = [...value];
     if (arr.length >= length) {
-      newArr = arr.slice(0, length).join("");
+      newArr = arr.slice(0, length).join('');
     }
     if (arr.length > 0 && arr.length < length) {
-      return arr.join("");
+      return arr.join('');
     }
     if (max && +newArr > max) return max;
     if (min && +newArr < min) return min;
     else return newArr;
   };
 
-  validateName = () => {
-    if (this.props.cardDetails.cardName.value)
-      if (this.checkName(this.props.cardDetails.cardName.value)) {
-        this.setState({ name: true });
+  const validateName = () => {
+    if (cardDetails.cardName.value)
+      if (checkName(cardDetails.cardName.value)) {
+        setCardNameState(true);
         return false;
       } else {
-        this.setState({ name: false });
+        setCardNameState(false);
         return true;
       }
     else {
-      this.setState({ name: true });
+      setCardNameState(true);
       return false;
     }
   };
 
-  validateNumber = () => {
-    if (this.props.cardDetails.cardNumber.value)
-      if (this.checkNumber(this.props.cardDetails.cardNumber.value)) {
-        this.setState({ number: true });
+  const validateNumber = () => {
+    if (cardDetails.cardNumber.value)
+      if (checkNumber(cardDetails.cardNumber.value)) {
+        setCardNumberState(true);
         return false;
       } else {
-        this.setState({ number: false });
+        setCardNumberState(false);
         return true;
       }
     else {
-      this.setState({ number: true });
+      setCardNumberState(true);
       return false;
     }
   };
 
-  validateTime = () => {
-    if (
-      this.props.cardDetails.month.value &&
-      this.props.cardDetails.year.value
-    ) {
-      this.setState({ time: false });
+  const validateTime = () => {
+    if (cardDetails.month.value && cardDetails.year.value) {
+      setCardtimeState(false);
       return true;
     }
-    if (
-      !this.props.cardDetails.month.value ||
-      !this.props.cardDetails.year.value
-    ) {
-      this.setState({ time: true });
+    if (!cardDetails.month.value || !cardDetails.year.value) {
+      setCardtimeState(true);
       return false;
     }
   };
 
-  validateCvc = () => {
-    if (this.props.cardDetails.cvc.value) {
-      this.setState({ cvc: false });
+  const validateCvc = () => {
+    if (cardDetails.cvc.value) {
+      setCardCvcState(false);
       return true;
     }
-    if (!this.props.cardDetails.cvc.value) {
-      this.setState({ cvc: true });
+    if (!cardDetails.cvc.value) {
+      setCardCvcState(true);
       return false;
     }
   };
 
-  setFormValue() {
-    if (
-      this.validateName() &&
-      this.validateNumber() &&
-      this.validateTime() &&
-      this.validateCvc()
-    )
-      this.props.setForm(false);
-    else return this.props.setForm(true);
-  }
+  const setFormValue = () => {
+    if (validateName() && validateNumber() && validateTime() && validateCvc())
+      setForm(false);
+    else setForm(true);
+  };
 
-  onFormSubmit = (event) => {
+  const onFormSubmit = (event) => {
     event.preventDefault();
-    this.validateName();
-    this.validateNumber();
-    this.validateTime();
-    this.validateCvc();
-    this.setFormValue();
+    validateName();
+    validateNumber();
+    validateTime();
+    validateCvc();
+    setFormValue();
   };
 
-  render() {
-    return (
-      <form
-        className={`Form ${this.props.form ? "" : "hide"}`}
-        onSubmit={this.onFormSubmit}
-      >
-        <div className="form-container">
-          <div className="form-group">
-            <label>CARDHOLDER NAME</label>
-            <input
-              type="text"
-              value={this.props.cardDetails.cardName.value}
-              onChange={(e) => this.props.handleChange("name", e.target.value)}
-              placeholder="e.g. Jane Appleseed"
-            />
-            <span className={`error ${this.state.name ? "show" : ""}`}>
-              Wrong format, letters only
-            </span>
-          </div>
+  return (
+    <form className={`Form ${form ? '' : 'hide'}`} onSubmit={onFormSubmit}>
+      <div className="form-container">
+        <div className="form-group">
+          <label>CARDHOLDER NAME</label>
+          <input
+            type="text"
+            value={cardDetails.cardName.value}
+            onChange={(e) => handleChange('name', e.target.value)}
+            placeholder="e.g. Jane Appleseed"
+          />
+          <span className={`error ${cardNameState ? 'show' : ''}`}>
+            Wrong format, letters only
+          </span>
+        </div>
 
-          <div className="form-group">
-            <label>CARD NUMBER</label>
-            <input
-              type="text"
-              value={this.props.cardDetails.cardNumber.value}
-              onChange={(e) =>
-                this.props.handleChange(
-                  "number",
-                  this.spaceCardNumber(e.target.value.toUpperCase())
-                )
-              }
-              placeholder="e.g. 1234 5678 9123 0000"
-            />
-            <span className={`error ${this.state.number ? "show" : ""}`}>
-              Wrong format, numbers only
-            </span>
-          </div>
+        <div className="form-group">
+          <label>CARD NUMBER</label>
+          <input
+            type="text"
+            value={cardDetails.cardNumber.value}
+            onChange={(e) =>
+              handleChange(
+                'number',
+                spaceCardNumber(e.target.value.toUpperCase())
+              )
+            }
+            placeholder="e.g. 1234 5678 9123 0000"
+          />
+          <span className={`error ${cardNumberState ? 'show' : ''}`}>
+            Wrong format, numbers only
+          </span>
+        </div>
 
-          {/* WORKING ON THE NUMBERS/TIME */}
-          <div className="form-group">
-            <div className="form-group-joint">
-              <label>EXP.DATE(MM/YY)</label>
-              <div className="form-group-joint-input">
-                <input
-                  ref={this.monthRef}
-                  type="number"
-                  placeholder="MM"
-                  min={1}
-                  max={12}
-                  value={this.props.cardDetails.month.value}
-                  onChange={(e) =>
-                    this.props.handleChange(
-                      "month",
-                      this.checkData(e.target.value, 2, 1, 12)
-                    )
-                  }
-                />
-                <input
-                  type="number"
-                  placeholder="YY"
-                  min={22}
-                  max={30}
-                  value={this.props.cardDetails.year.value}
-                  onChange={(e) =>
-                    this.props.handleChange(
-                      "year",
-                      this.checkData(e.target.value, 2, 22, 30)
-                    )
-                  }
-                />
-              </div>
-              <span className={`error ${this.state.time ? "show" : ""}`}>
-                Can't be blank
-              </span>
-            </div>
-
-            <div className="form-group form-group-disjointed-input">
-              <label>CVC</label>
+        {/* WORKING ON THE NUMBERS/TIME */}
+        <div className="form-group">
+          <div className="form-group-joint">
+            <label>EXP.DATE(MM/YY)</label>
+            <div className="form-group-joint-input">
               <input
+                ref={monthRef}
                 type="number"
-                min={100}
-                max={999}
-                placeholder="e.g. 123"
-                value={this.props.cardDetails.cvc.value}
+                placeholder="MM"
+                min={1}
+                max={12}
+                value={cardDetails.month.value}
                 onChange={(e) =>
-                  this.props.handleChange(
-                    "cvc",
-                    this.checkData(e.target.value, 3, 100, 999)
-                  )
+                  handleChange('month', checkData(e.target.value, 2, 1, 12))
                 }
               />
-              <span className={`error ${this.state.cvc ? "show" : ""}`}>
-                Can't be blank
-              </span>
+              <input
+                type="number"
+                placeholder="YY"
+                min={22}
+                max={30}
+                value={cardDetails.year.value}
+                onChange={(e) =>
+                  handleChange('year', checkData(e.target.value, 2, 22, 30))
+                }
+              />
             </div>
+            <span className={`error ${cardTimeState ? 'show' : ''}`}>
+              Can't be blank
+            </span>
           </div>
 
-          <div className="btn btn-submit">
-            <input type="submit" value="Confirm" />
+          <div className="form-group form-group-disjointed-input">
+            <label>CVC</label>
+            <input
+              type="number"
+              min={100}
+              max={999}
+              placeholder="e.g. 123"
+              value={cardDetails.cvc.value}
+              onChange={(e) =>
+                handleChange('cvc', checkData(e.target.value, 3, 100, 999))
+              }
+            />
+            <span className={`error ${cardCvcState ? 'show' : ''}`}>
+              Can't be blank
+            </span>
           </div>
         </div>
-      </form>
-    );
-  }
-}
+
+        <div className="btn btn-submit">
+          <input type="submit" value="Confirm" />
+        </div>
+      </div>
+    </form>
+  );
+};
 
 export default Form;
