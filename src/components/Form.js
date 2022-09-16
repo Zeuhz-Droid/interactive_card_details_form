@@ -9,10 +9,10 @@ import {
 } from './utilities';
 
 const Form = ({ handleChange, setForm, cardDetails, form }) => {
-  const [cardNameState, setCardNameState] = useState();
-  const [cardNumberState, setCardNumberState] = useState();
-  const [cardTimeState, setCardtimeState] = useState();
-  const [cardCvcState, setCardCvcState] = useState();
+  const [cardNameState, setCardNameState] = useState(false);
+  const [cardNumberState, setCardNumberState] = useState(false);
+  const [cardTimeState, setCardtimeState] = useState(false);
+  const [cardCvcState, setCardCvcState] = useState(false);
 
   const monthRef = useRef();
 
@@ -26,7 +26,7 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
 
   const padInput = (e) => {
     if (e.target.value && e.target.value.length <= 1) {
-      cardDetails.month.value = e.target.value.padStart(2, '0');
+      handleChange('month', e.target.value.padStart(2, '0'));
     }
   };
 
