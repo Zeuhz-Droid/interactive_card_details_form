@@ -31,6 +31,16 @@ const App = () => {
     });
   };
 
+  const resetFormDetails = () => {
+    setCardDetails({
+      cardName: { id: "name", value: "" },
+      cardNumber: { id: "number", value: "" },
+      month: { id: "month", value: "" },
+      year: { id: "year", value: "" },
+      cvc: { id: "cvc", value: "" },
+    });
+  };
+
   const setFormValue = (value) => {
     setForm(value);
   };
@@ -44,11 +54,7 @@ const App = () => {
         cardDetails={cardDetails}
         form={form}
       />
-      <ThankYou
-        handleChange={handleStateChange}
-        form={form}
-        setForm={setForm}
-      />
+      <ThankYou resetForm={resetFormDetails} form={form} setForm={setForm} />
     </div>
   );
 };

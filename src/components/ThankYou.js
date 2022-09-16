@@ -1,6 +1,6 @@
-import './ThankYou.css';
-import iconComplete from '../img/icon-complete.svg';
-import React from 'react';
+import "./ThankYou.css";
+import iconComplete from "../img/icon-complete.svg";
+import React from "react";
 
 class ThankYou extends React.Component {
   constructor(props) {
@@ -9,21 +9,17 @@ class ThankYou extends React.Component {
   }
 
   componentDidMount() {
-    this.inputRef.current.addEventListener('click', this.initForm);
+    this.inputRef.current.addEventListener("click", this.initForm);
   }
 
   initForm = () => {
-    this.props.setCardName('');
-    this.props.setCardNumber('');
-    this.props.setMonth('');
-    this.props.setYear('');
-    this.props.setCvc('');
+    this.props.resetForm();
     this.props.setForm(true);
   };
 
   render() {
     return (
-      <div className={`thankyou ${this.props.form ? 'hide' : ''}`}>
+      <div className={`thankyou ${this.props.form ? "hide" : ""}`}>
         <img src={iconComplete} className="icon-complete" alt="icon-check" />
         <span className="thank-you--title">THANK YOU!</span>
         <p className="thank-you--text">We've added your card details</p>
