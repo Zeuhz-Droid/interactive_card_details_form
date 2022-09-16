@@ -153,7 +153,7 @@ class Form extends React.Component {
             <label>CARDHOLDER NAME</label>
             <input
               type="text"
-              value={this.props.cardName}
+              value={this.props.cardDetails.cardName.value}
               onChange={(e) => this.props.handleChange("name", e.target.value)}
               placeholder="e.g. Jane Appleseed"
             />
@@ -166,7 +166,7 @@ class Form extends React.Component {
             <label>CARD NUMBER</label>
             <input
               type="text"
-              value={this.props.cardNumber}
+              value={this.props.cardDetails.cardNumber.value}
               onChange={(e) =>
                 this.props.handleChange(
                   "number",
@@ -191,7 +191,7 @@ class Form extends React.Component {
                   placeholder="MM"
                   min={1}
                   max={12}
-                  value={this.props.month}
+                  value={this.props.cardDetails.month.value}
                   onChange={(e) =>
                     this.props.handleChange(
                       "month",
@@ -204,7 +204,7 @@ class Form extends React.Component {
                   placeholder="YY"
                   min={22}
                   max={30}
-                  value={this.props.year}
+                  value={this.props.cardDetails.year.value}
                   onChange={(e) =>
                     this.props.handleChange(
                       "year",
@@ -225,7 +225,7 @@ class Form extends React.Component {
                 min={100}
                 max={999}
                 placeholder="e.g. 123"
-                value={this.props.cvc}
+                value={this.props.cardDetails.cvc.value}
                 onChange={(e) =>
                   this.props.handleChange(
                     "cvc",
