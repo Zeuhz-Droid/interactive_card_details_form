@@ -1,8 +1,8 @@
-import './Card.css';
-import React from 'react';
-import logo from '../img/card-logo.svg';
+import "./Card.css";
+import React from "react";
+import logo from "../img/card-logo.svg";
 
-const CardFront = ({ cardName, cardNumber, month, year }) => {
+const CardFront = ({ cardDetails }) => {
   return (
     <div className="card-front">
       <span className="card-logo">
@@ -10,12 +10,15 @@ const CardFront = ({ cardName, cardNumber, month, year }) => {
       </span>
       <div className="card-details">
         <span className="card-number">{`${
-          cardNumber || '0000 0000 0000 0000'
+          cardDetails.cardNumber.value || "0000 0000 0000 0000"
         }`}</span>
         <div className="name-expiry-date-container">
-          <span className="card-name">{`${cardName || 'Jane Appleseed'}`}</span>
+          <span className="card-name">{`${
+            cardDetails.cardName.value || "Jane Appleseed"
+          }`}</span>
           <span className="card-expiry-date">
-            {`${month || '00'}`}/{`${year || '00'}`}
+            {`${cardDetails.month.value || "00"}`}/
+            {`${cardDetails.year.value || "00"}`}
           </span>
         </div>
       </div>
@@ -23,24 +26,19 @@ const CardFront = ({ cardName, cardNumber, month, year }) => {
   );
 };
 
-const CardBack = ({ cvc }) => {
+const CardBack = ({ cardDetails }) => {
   return (
     <div className="card-back">
-      <span className="card-cvc">{`${cvc || '000'}`}</span>
+      <span className="card-cvc">{`${cardDetails.cvc.value || "000"}`}</span>
     </div>
   );
 };
 
-const Card = ({ cardName, cardNumber, cvc, month, year }) => {
+const Card = ({ cardDetails }) => {
   return (
     <div className="Card">
-      <CardFront
-        cardName={cardName}
-        cardNumber={cardNumber}
-        month={month}
-        year={year}
-      />
-      <CardBack cvc={cvc} />
+      <CardFront cardDetails={cardDetails} />
+      <CardBack cardDetails={cardDetails} />
     </div>
   );
 };
