@@ -1,6 +1,13 @@
 import './Form.css';
 import React, { useState, useEffect, useRef } from 'react';
 
+import {
+  spaceCardNumber,
+  checkName,
+  checkNumber,
+  checkData,
+} from './utilities';
+
 const Form = ({ handleChange, setForm, cardDetails, form }) => {
   const [cardNameState, setCardNameState] = useState();
   const [cardNumberState, setCardNumberState] = useState();
@@ -8,56 +15,19 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
   const [cardCvcState, setCardCvcState] = useState();
 
   const monthRef = useRef();
-  const specialChar = /[`!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?~]/;
-  const numChar = /[0-9]/;
-  const letterChar = /[A-Z]/;
 
   useEffect(() => {
-    monthRef.current.addEventListener('blur', padInput);
+    const monRefCurrent = monthRef.current;
+    monRefCurrent.addEventListener('blur', padInput);
     return () => {
-      monthRef.current.removeEventListener('blur', padInput);
+      monRefCurrent.removeEventListener('blur', padInput);
     };
   });
 
   const padInput = (e) => {
-    console.log(e);
     if (e.target.value && e.target.value.length <= 1) {
       cardDetails.month.value = e.target.value.padStart(2, '0');
-      console.log(cardDetails.month.value);
     }
-  };
-
-  const spaceCardNumber = (str) => {
-    return (
-      str
-        .replace(/\s/g, '')
-        .match(/.{1,4}/g)
-        ?.join(' ')
-        .substr(0, 19) || ''
-    );
-  };
-
-  // using Regular expression (RegExp)
-  const checkName = (name) => {
-    return specialChar.test(name) || numChar.test(name);
-  }; // true
-
-  const checkNumber = (number) => {
-    return letterChar.test(number) || specialChar.test(number);
-  }; //true
-
-  const checkData = (value, length, min, max) => {
-    let newArr;
-    const arr = [...value];
-    if (arr.length >= length) {
-      newArr = arr.slice(0, length).join('');
-    }
-    if (arr.length > 0 && arr.length < length) {
-      return arr.join('');
-    }
-    if (max && +newArr > max) return max;
-    if (min && +newArr < min) return min;
-    else return newArr;
   };
 
   const validateName = () => {
