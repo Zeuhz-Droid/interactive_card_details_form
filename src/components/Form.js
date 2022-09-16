@@ -27,7 +27,7 @@ class Form extends React.Component {
   }
 
   padInput = (e) => {
-    if (e.target.value.length <= 1) {
+    if (e.target.value && e.target.value.length <= 1) {
       console.log(e.target.value.length);
       this.props.setMonth(e.target.value.padStart(2, "0"));
     }

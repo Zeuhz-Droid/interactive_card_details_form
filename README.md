@@ -14,7 +14,7 @@ This is a solution to the [Interactive card details form challenge on Frontend M
   - [My process](#my-process)
     - [Built with](#built-with)
     - [What was learnt](#what-was-learnt)
-  - [Author(s)](#authors)
+  - [Author(s)/Contributor(s)](#authorscontributors)
   - [Acknowledgments](#acknowledgments)
 - [Getting Started with Create React App](#getting-started-with-create-react-app)
   - [Available Scripts](#available-scripts)
@@ -45,7 +45,8 @@ Users should be able to:
 
 ### Introduction to Project
 
-This project was built as a precursor to learning and perfecting React, hence this is a REACT only project.
+This is a form validator built with react, it allows users to input datails needed for payment via a mobile bank transfer, validates the data collected, and gives a feedback only if the required format of details have been submitted.
+This project was built as a precursor to learning and perfecting React, hence this project was built with only REACT and styled with native CSS.
 Class components _e.g_,
 
 ```js
@@ -72,7 +73,7 @@ The site when the form has been submitted,
 ### Links
 
 - Solution URL: [CODE](https://github.com/Zeuhz-Droid/interactive_card_details_form)
-- Live Site URL: [LIVE](https://interactive-card-details-drtyzd.netlify.app/)
+- Live Site URL: [LIVE](https://first-react-drtyzd.netlify.app/)
 
 ## My process
 
@@ -92,22 +93,74 @@ The site when the form has been submitted,
 - passing states as props from parent to child comps.
 - passing props to parents using callbacks,
 - using lifecycle methods in React.
+- about react hooks
+- working in a team
+- solving problems together.
+
+Code [Dearie_de_cybek](https://twitter.com/Dearie_de_cybek) is proud of.
 
 ```js
+<div className="form-group-joint-input">
+  <input
+    ref={this.monthRef}
+    type="number"
+    placeholder="MM"
+    min={1}
+    max={12}
+    value={this.props.month}
+    onChange={(e) =>
+      this.props.setMonth(this.checkData(e.target.value, 2, 1, 12))
+    }
+  />
+</div>
+```
+
+Code [zeuhzDroid](https://www.twitter.com/zeuhzDroid) is proud of.
+
+```js
+    this.inputRef = React.createRef();
+    this.monthRef = React.createRef();
+
   componentDidMount() {
     this.monthRef.current.addEventListener('blur', this.padInput);
   }
-
    componentWillUnmount() {
     this.monthRef.current.removeEventListener('blur', this.padInput);
   }
 ```
 
-## Author(s)
+Code [adetoye_dev](https://twitter.com/adetoye_dev) is proud of.
+
+```js
+const Card = ({ cardName, cardNumber, cvc, month, year }) => {
+  return (
+    <div className="Card">
+      <CardFront
+        cardName={cardName}
+        cardNumber={cardNumber}
+        month={month}
+        year={year}
+      />
+      <CardBack cvc={cvc} />
+    </div>
+  );
+};
+export default Card;
+```
+
+## Author(s)/Contributor(s)
+
+- GitHub Link - [@Dearie-cyber](https://github.com/Dearie-cyber)
+  Frontend Mentor - [@Dearie-cyber](http://frontendmentor.io/profile/Dearie-cyber)
+  Twitter - [@Dearie_de_cybek)](https://twitter.com/Dearie_de_cybek)
+
+- GitHub Link - [@adetoye-dev](https://github.com/adetoye-dev)
+  Frontend Mentor - [@adetoye-dev](https://www.frontendmentor.io/profile/adetoye-dev)
+  Twitter - [@adetoye_dev](https://twitter.com/adetoye_dev)
 
 - GitHub Link - [@Zeuhz-Droid](https://www.github.com/Zeuhz-Droid)
-- Frontend Mentor - [@zeuhz-Droid](https://www.frontendmentor.io/profile/Zeuhz-Droid)
-- Twitter - [@zeuhzDroid](https://www.twitter.com/zeuhzDroid)
+  Frontend Mentor - [@zeuhz-Droid](https://www.frontendmentor.io/profile/Zeuhz-Droid)
+  Twitter - [@zeuhzDroid](https://www.twitter.com/zeuhzDroid)
 
 ## Acknowledgments
 
@@ -183,3 +236,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+```
+
+```
