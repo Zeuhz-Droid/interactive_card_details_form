@@ -1,12 +1,12 @@
-import './Form.css';
-import React, { useState, useEffect, useRef } from 'react';
+import "./Form.css";
+import React, { useState, useEffect, useRef } from "react";
 
 import {
   spaceCardNumber,
   checkName,
   checkNumber,
   checkData,
-} from './utilities';
+} from "./utilities";
 
 const Form = ({ handleChange, setForm, cardDetails, form }) => {
   const [cardNameState, setCardNameState] = useState();
@@ -18,21 +18,21 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
 
   useEffect(() => {
     const monRefCurrent = monthRef.current;
-    monRefCurrent.addEventListener('blur', padInput);
+    monRefCurrent.addEventListener("blur", padInput);
     return () => {
-      monRefCurrent.removeEventListener('blur', padInput);
+      monRefCurrent.removeEventListener("blur", padInput);
     };
   });
 
   const padInput = (e) => {
     if (e.target.value && e.target.value.length <= 1) {
-      cardDetails.month.value = e.target.value.padStart(2, '0');
+      cardDetails.month = e.target.value.padStart(2, "0");
     }
   };
 
   const validateName = () => {
-    if (cardDetails.cardName.value)
-      if (checkName(cardDetails.cardName.value)) {
+    if (cardDetails.cardName)
+      if (checkName(cardDetails.cardName)) {
         setCardNameState(true);
         return false;
       } else {
@@ -46,8 +46,8 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
   };
 
   const validateNumber = () => {
-    if (cardDetails.cardNumber.value)
-      if (checkNumber(cardDetails.cardNumber.value)) {
+    if (cardDetails.cardNumber)
+      if (checkNumber(cardDetails.cardNumber)) {
         setCardNumberState(true);
         return false;
       } else {
@@ -61,22 +61,22 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
   };
 
   const validateTime = () => {
-    if (cardDetails.month.value && cardDetails.year.value) {
+    if (cardDetails.month && cardDetails.year) {
       setCardtimeState(false);
       return true;
     }
-    if (!cardDetails.month.value || !cardDetails.year.value) {
+    if (!cardDetails.month || !cardDetails.year) {
       setCardtimeState(true);
       return false;
     }
   };
 
   const validateCvc = () => {
-    if (cardDetails.cvc.value) {
+    if (cardDetails.cvc) {
       setCardCvcState(false);
       return true;
     }
-    if (!cardDetails.cvc.value) {
+    if (!cardDetails.cvc) {
       setCardCvcState(true);
       return false;
     }
@@ -98,17 +98,18 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
   };
 
   return (
-    <form className={`Form ${form ? '' : 'hide'}`} onSubmit={onFormSubmit}>
+    <form className={`Form ${form ? "" : "hide"}`} onSubmit={onFormSubmit}>
       <div className="form-container">
         <div className="form-group">
           <label>CARDHOLDER NAME</label>
           <input
             type="text"
-            value={cardDetails.cardName.value}
-            onChange={(e) => handleChange('name', e.target.value)}
+            value={cardDetails.cardName}
+            name="cardName"
+            onChange={(e) => handleChange(e.target.name, e.target.value)}
             placeholder="e.g. Jane Appleseed"
           />
-          <span className={`error ${cardNameState ? 'show' : ''}`}>
+          <span className={`error ${cardNameState ? "show" : ""}`}>
             Wrong format, letters only
           </span>
         </div>
@@ -117,16 +118,17 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
           <label>CARD NUMBER</label>
           <input
             type="text"
-            value={cardDetails.cardNumber.value}
+            value={cardDetails.cardNumber}
+            name="cardNumber"
             onChange={(e) =>
               handleChange(
-                'number',
+                e.target.name,
                 spaceCardNumber(e.target.value.toUpperCase())
               )
             }
             placeholder="e.g. 1234 5678 9123 0000"
           />
-          <span className={`error ${cardNumberState ? 'show' : ''}`}>
+          <span className={`error ${cardNumberState ? "show" : ""}`}>
             Wrong format, numbers only
           </span>
         </div>
@@ -142,9 +144,13 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
                 placeholder="MM"
                 min={1}
                 max={12}
-                value={cardDetails.month.value}
+                value={cardDetails.month}
+                name="month"
                 onChange={(e) =>
-                  handleChange('month', checkData(e.target.value, 2, 1, 12))
+                  handleChange(
+                    e.target.name,
+                    checkData(e.target.value, 2, 1, 12)
+                  )
                 }
               />
               <input
@@ -152,13 +158,17 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
                 placeholder="YY"
                 min={22}
                 max={30}
-                value={cardDetails.year.value}
+                value={cardDetails.year}
+                name="year"
                 onChange={(e) =>
-                  handleChange('year', checkData(e.target.value, 2, 22, 30))
+                  handleChange(
+                    e.target.name,
+                    checkData(e.target.value, 2, 22, 30)
+                  )
                 }
               />
             </div>
-            <span className={`error ${cardTimeState ? 'show' : ''}`}>
+            <span className={`error ${cardTimeState ? "show" : ""}`}>
               Can't be blank
             </span>
           </div>
@@ -170,12 +180,16 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
               min={100}
               max={999}
               placeholder="e.g. 123"
-              value={cardDetails.cvc.value}
+              value={cardDetails.cvc}
+              name="cvc"
               onChange={(e) =>
-                handleChange('cvc', checkData(e.target.value, 3, 100, 999))
+                handleChange(
+                  e.target.name,
+                  checkData(e.target.value, 3, 100, 999)
+                )
               }
             />
-            <span className={`error ${cardCvcState ? 'show' : ''}`}>
+            <span className={`error ${cardCvcState ? "show" : ""}`}>
               Can't be blank
             </span>
           </div>
