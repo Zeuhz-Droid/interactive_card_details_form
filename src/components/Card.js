@@ -10,15 +10,14 @@ const CardFront = ({ cardDetails }) => {
       </span>
       <div className="card-details">
         <span className="card-number">{`${
-          cardDetails.cardNumber.value || "0000 0000 0000 0000"
+          cardDetails.cardNumber || "0000 0000 0000 0000"
         }`}</span>
         <div className="name-expiry-date-container">
           <span className="card-name">{`${
-            cardDetails.cardName.value || "Jane Appleseed"
+            cardDetails.cardName || "Jane Appleseed"
           }`}</span>
           <span className="card-expiry-date">
-            {`${cardDetails.month.value || "00"}`}/
-            {`${cardDetails.year.value || "00"}`}
+            {`${cardDetails.month || "00"}`}/{`${cardDetails.year || "00"}`}
           </span>
         </div>
       </div>
@@ -29,7 +28,7 @@ const CardFront = ({ cardDetails }) => {
 const CardBack = ({ cardDetails }) => {
   return (
     <div className="card-back">
-      <span className="card-cvc">{`${cardDetails.cvc.value || "000"}`}</span>
+      <span className="card-cvc">{`${cardDetails.cvc || "000"}`}</span>
     </div>
   );
 };

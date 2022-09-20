@@ -31,8 +31,8 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
   };
 
   const validateName = () => {
-    if (cardDetails.cardName.value)
-      if (checkName(cardDetails.cardName.value)) {
+    if (cardDetails.cardName)
+      if (checkName(cardDetails.cardName)) {
         setCardNameState(true);
         return false;
       } else {
@@ -46,8 +46,8 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
   };
 
   const validateNumber = () => {
-    if (cardDetails.cardNumber.value)
-      if (checkNumber(cardDetails.cardNumber.value)) {
+    if (cardDetails.cardNumber)
+      if (checkNumber(cardDetails.cardNumber)) {
         setCardNumberState(true);
         return false;
       } else {
@@ -61,22 +61,22 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
   };
 
   const validateTime = () => {
-    if (cardDetails.month.value && cardDetails.year.value) {
+    if (cardDetails.month && cardDetails.year) {
       setCardtimeState(false);
       return true;
     }
-    if (!cardDetails.month.value || !cardDetails.year.value) {
+    if (!cardDetails.month || !cardDetails.year) {
       setCardtimeState(true);
       return false;
     }
   };
 
   const validateCvc = () => {
-    if (cardDetails.cvc.value) {
+    if (cardDetails.cvc) {
       setCardCvcState(false);
       return true;
     }
-    if (!cardDetails.cvc.value) {
+    if (!cardDetails.cvc) {
       setCardCvcState(true);
       return false;
     }
@@ -104,8 +104,9 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
           <label>CARDHOLDER NAME</label>
           <input
             type="text"
-            value={cardDetails.cardName.value}
-            onChange={(e) => handleChange('name', e.target.value)}
+            value={cardDetails.cardName}
+            name="cardName"
+            onChange={(e) => handleChange(e.target.name, e.target.value)}
             placeholder="e.g. Jane Appleseed"
           />
           <span className={`error ${cardNameState ? 'show' : ''}`}>
@@ -117,10 +118,11 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
           <label>CARD NUMBER</label>
           <input
             type="text"
-            value={cardDetails.cardNumber.value}
+            value={cardDetails.cardNumber}
+            name="cardNumber"
             onChange={(e) =>
               handleChange(
-                'number',
+                e.target.name,
                 spaceCardNumber(e.target.value.toUpperCase())
               )
             }
@@ -142,9 +144,13 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
                 placeholder="MM"
                 min={1}
                 max={12}
-                value={cardDetails.month.value}
+                value={cardDetails.month}
+                name="month"
                 onChange={(e) =>
-                  handleChange('month', checkData(e.target.value, 2, 1, 12))
+                  handleChange(
+                    e.target.name,
+                    checkData(e.target.value, 2, 1, 12)
+                  )
                 }
               />
               <input
@@ -152,9 +158,13 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
                 placeholder="YY"
                 min={22}
                 max={30}
-                value={cardDetails.year.value}
+                value={cardDetails.year}
+                name="year"
                 onChange={(e) =>
-                  handleChange('year', checkData(e.target.value, 2, 22, 30))
+                  handleChange(
+                    e.target.name,
+                    checkData(e.target.value, 2, 22, 30)
+                  )
                 }
               />
             </div>
@@ -170,9 +180,13 @@ const Form = ({ handleChange, setForm, cardDetails, form }) => {
               min={100}
               max={999}
               placeholder="e.g. 123"
-              value={cardDetails.cvc.value}
+              value={cardDetails.cvc}
+              name="cvc"
               onChange={(e) =>
-                handleChange('cvc', checkData(e.target.value, 3, 100, 999))
+                handleChange(
+                  e.target.name,
+                  checkData(e.target.value, 3, 100, 999)
+                )
               }
             />
             <span className={`error ${cardCvcState ? 'show' : ''}`}>
